@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS products (
+    id UUID PRIMARY KEY,
+    sku VARCHAR(255) UNIQUE NOT NULL,
+    type VARCHAR(150) NOT NULL,
+    name VARCHAR(250) NOT NULL,
+    brand VARCHAR(250) NOT NULL,
+    sugar_level INT NOT NULL,
+    production_year VARCHAR(4) NOT NULL,
+    distributor VARCHAR(255) NOT NULL,
+    status BOOLEAN NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NULL,
+    updated_at TIMESTAMP WITH TIME ZONE NULL,
+    deleted_at TIMESTAMP WITH TIME ZONE NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_products_sku ON products(sku);
