@@ -234,7 +234,7 @@ func (p *productRepository) UpdateProduct(data entity.Product) *response.Error {
 	defer tx.Rollback()
 
 	query := `
-		UPDATE products SET sku = $2, type = $3, name = $4, brand = $5, sugar_level = $6, production_year = $7, distributor = $8 WHERE id = $1
+		UPDATE products SET sku = $2, type = $3, name = $4, brand = $5, sugar_level = $6, production_year = $7, distributor = $8, updated_at = $9 WHERE id = $1
 	`
 
 	_, errExec := tx.Exec(query,
@@ -246,6 +246,7 @@ func (p *productRepository) UpdateProduct(data entity.Product) *response.Error {
 		data.SugarLevel,
 		data.ProductionYear,
 		data.Distributor,
+		data.UpdatedAt,
 	)
 
 	if errExec != nil {
