@@ -110,10 +110,10 @@ func (u *userRepository) UpdateUser(data entity.User) *response.Error {
 	defer tx.Rollback()
 
 	query := `
-		UPDATE users SET name = $1, email = $2, password = $3, role = $4, status = $5 WHERE id = $6
+		UPDATE users SET name = $1, email = $2, password = $3, role = $4, status = $5, updated_at = $6 WHERE id = $7
 	`
 
-	_, errExec := tx.Exec(query, data.Name, data.Email, data.Password, data.Role, data.Status, data.ID)
+	_, errExec := tx.Exec(query, data.Name, data.Email, data.Password, data.Role, data.Status, data.UpdatedAt, data.ID)
 	if errExec != nil {
 		log.Error().Err(errExec).Int("status", 500).Str("function", "update user").Msg("failed to update user")
 		return &response.Error{

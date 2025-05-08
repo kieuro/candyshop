@@ -109,6 +109,8 @@ func (u *userService) UpdateUser(data dto.UpdateUserRequest) *response.Error {
 		password = checkUser.Password
 	}
 
+	currentTime := time.Now()
+
 	// assign the request to the entity
 	dataUser := &entity.User{
 		ID:       data.ID,
@@ -117,6 +119,7 @@ func (u *userService) UpdateUser(data dto.UpdateUserRequest) *response.Error {
 		Password: password,
 		Role:     role,
 		Status:   status,
+		UpdatedAt: &currentTime,
 	}
 
 	return u.repository.UpdateUser(*dataUser)

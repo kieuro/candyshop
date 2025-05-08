@@ -137,6 +137,8 @@ func (p *productService) UpdateProduct(data dto.UpdateProductRequest) *response.
 		data.Distributor = product.Distributor
 	}
 
+	currentTime := time.Now()
+
 	// assign the value from request to entity
 	dataProduct := &entity.Product{
 		ID:             data.ID,
@@ -147,6 +149,7 @@ func (p *productService) UpdateProduct(data dto.UpdateProductRequest) *response.
 		SugarLevel:     data.SugarLevel,
 		ProductionYear: data.ProductionYear,
 		Distributor:    data.Distributor,
+		UpdatedAt:      &currentTime,
 	}
 
 	return p.repository.UpdateProduct(*dataProduct)

@@ -2,6 +2,7 @@ package main
 
 import (
 	product "candyshop/internal/product"
+	store "candyshop/internal/store"
 	user "candyshop/internal/user"
 	"candyshop/pkg/db"
 	"os"
@@ -47,6 +48,7 @@ func main() {
 
 	user.Init(r, db)
 	product.Init(r, db)
+	store.Init(r, db)
 
 	r.Listen(":5000")
 }
