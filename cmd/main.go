@@ -1,6 +1,7 @@
 package main
 
 import (
+	customer "candyshop/internal/customer"
 	product "candyshop/internal/product"
 	store "candyshop/internal/store"
 	user "candyshop/internal/user"
@@ -49,6 +50,7 @@ func main() {
 	user.Init(r, db)
 	product.Init(r, db)
 	store.Init(r, db)
+	customer.Init(r, db)
 
 	r.Listen(":5000")
 }
